@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucas AI | Automações e Inteligência Artificial para Empresas</title>
+  <meta name="description" content="Crie agentes de IA, chatbots, automações e integrações personalizadas para sua empresa.">
+  <meta name="author" content="Lucas AI">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Portuguese">
+  <meta name="geo.region" content="BR">
+  <link rel="canonical" href="https://lucasai.com.br/">
+
+  <meta property="og:title" content="Lucas AI | Automações e Inteligência Artificial para Empresas">
+  <meta property="og:description" content="Crie agentes de IA, chatbots, automações e integrações personalizadas para sua empresa.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lucasai.com.br/">
+  <meta property="og:image" content="https://lucasai.com.br/assets/images/hero/office-scene.svg">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Lucas AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lucas AI | Automações Inteligentes">
+  <meta name="twitter:description" content="Agentes de IA, chatbots e automações para atendimento, vendas e processos internos.">
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Lucas AI",
+    "alternateName": "Lucas AI — Automações Inteligentes",
+    "description": "Agentes de IA, chatbots, automações e integrações personalizadas para empresas.",
+    "url": "https://lucasai.com.br/",
+    "telephone": "+55-31-97340-3545",
+    "areaServed": { "@type": "Country", "name": "Brasil" },
+    "serviceType": ["Inteligência Artificial", "Automação empresarial", "Chatbots", "Integrações"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a class="brand" href="#inicio" aria-label="Lucas AI — início">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <strong>LUCAS AI</strong>
+          <small>Automações inteligentes</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" role="navigation" aria-label="Navegação principal">
+        <a href="#problema">O problema</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#demonstracao">Demonstração</a>
+        <a href="#simulador">Simulador</a>
+        <a href="#segmentos">Segmentos</a>
+        <a href="#impacto">O risco</a>
+        <a href="#contato" class="nav-cta">Falar com a Lucas AI</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
+    <section id="inicio" class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="badge">IA • AUTOMAÇÃO • INTEGRAÇÕES • SEGURANÇA</p>
+          <h1 id="hero-title">Construímos soluções digitais inteligentes para <em>automatizar processos, integrar sistemas e reduzir riscos.</em></h1>
+          <p class="hero-lead">Criamos agentes de IA, automações e integrações personalizadas que conectam suas ferramentas, protegem seus dados e liberam sua equipe para o que realmente importa.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#simulador">Solicitar diagnóstico</a>
+            <a class="btn btn-ghost" href="#demonstracao">Ver como funciona</a>
+          </div>
+          <p class="hero-note">Demonstrações locais. Nenhum dado é enviado para sistemas reais.</p>
+        </div>
+
+        <div class="hero-stage">
+          <div class="hero-photo">
+            <img src="assets/images/hero/office-scene.svg" alt="Ambiente corporativo com empresário trabalhando ao lado de interfaces de inteligência artificial." width="900" height="1100">
+            <div class="hero-photo-veil" aria-hidden="true"></div>
+          </div>
+
+          <aside class="ai-panel" aria-label="Interface demonstrativa do assistente de IA">
+            <header class="ai-panel-head">
+              <div>
+                <p class="ai-kicker">DEMONSTRAÇÃO</p>
+                <h2>Assistente IA</h2>
+              </div>
+              <span class="status-pill" data-online>
+                <i></i> Online
+              </span>
+            </header>
+
+            <div class="ai-chat" id="hero-chat" aria-live="polite">
+              <article class="bubble client is-hidden" data-hero-msg>
+                <span>Cliente</span>
+                <p>Olá, gostaria de agendar um horário para amanhã.</p>
+              </article>
+              <article class="bubble ai is-hidden" data-hero-msg>
+                <span>IA</span>
+                <p>Claro! Tenho disponibilidade às 10h, 14h e 16h. Qual horário funciona melhor para você?</p>
+              </article>
+              <article class="bubble client is-hidden" data-hero-msg>
+                <span>Cliente</span>
+                <p>14h.</p>
+              </article>
+              <article class="bubble ai is-hidden" data-hero-msg>
+                <span>IA</span>
+                <p>Perfeito! Seu agendamento foi realizado com sucesso.</p>
+              </article>
+            </div>
+
+            <ul class="process-list" id="hero-checks">
+              <li data-hero-check>Cliente identificado</li>
+              <li data-hero-check>Necessidade entendida</li>
+              <li data-hero-check>Agenda consultada</li>
+              <li data-hero-check>Horário reservado</li>
+              <li data-hero-check>Cliente cadastrado</li>
+              <li data-hero-check>Confirmação enviada</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="Benefícios">
+      <ul class="benefits-track">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h4l2-6 4 12 2-6h4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          Atendimento inteligente
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 3v4M16 3v4M4 10h16" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          Agendamentos automáticos
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 19c.6-3 2.6-5 5-5s4.4 2 5 5M16 11h5M18.5 8.5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          Captação de leads
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10H7zM3 12h4M17 12h4M12 3v4M12 17v4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          Integrações com seus sistemas
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l5-5 4 4 7-8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          Mais produtividade
+        </li>
+      </ul>
+    </section>
+
+    <section id="problema" class="section problem" data-reveal>
+      <p class="section-kicker">O desafio</p>
+      <h2>Empresas gastam tempo em tarefas que máquinas deveriam fazer.</h2>
+      <p class="section-lead">Enquanto sua equipe responde a mesma pergunta pela décima vez, você está perdendo produtividade, cometendo erros e deixando lacunas de segurança abertas.</p>
+      <div class="problem-grid">
+        <article><h3>Tempo perdido</h3><p>Funcionários gastam horas com tarefas repetitivas que poderiam ser automatizadas.</p></article>
+        <article><h3>Erros manuais</h3><p>Copiar dados de um sistema para outro aumenta risco de erros e inconsistências.</p></article>
+        <article><h3>Falta de integração</h3><p>Sistemas que não conversam um com o outro criam silos de informação.</p></article>
+        <article><h3>Sem visibilidade</h3><p>Não há forma centralizada de acompanhar o que está acontecendo.</p></article>
+        <article><h3>Riscos de segurança</h3><p>Processos manuais abrem espaço para exposição de dados sensíveis.</p></article>
+        <article><h3>Dificuldade de escala</h3><p>Crescer sem automatizar significa contratar mais pessoas para fazer o mesmo.</p></article>
+        <article><h3>Leads perdidos</h3><p>Sem acompanhamento automático, oportunidades esfriamão ser perseguidas adequadamente.</p></article>
+        <article><h3>Falta de análise</h3><p>Sem dados centralizados, decisões são baseadas em impressões, não em fatos.</p></article>
+      </div>
+      <p class="section-close">É exatamente aí que a automação inteligente pode entrar — conectando tudo, protegendo dados e liberando sua equipe.</p>
+    </section>
+
+    <section id="como-funciona" class="section flow" data-reveal>
+      <p class="section-kicker">Como funciona</p>
+      <h2>Da mensagem ao resultado.</h2>
+      <ol class="flow-rail" aria-label="Fluxo da automação">
+        <li>Cliente</li>
+        <li>WhatsApp / Site</li>
+        <li>IA</li>
+        <li>Automação</li>
+        <li>Sistemas</li>
+        <li>Equipe</li>
+      </ol>
+      <ol class="flow-detail">
+        <li>Cliente envia mensagem.</li>
+        <li>IA entende a intenção.</li>
+        <li>Sistema consulta informações.</li>
+        <li>Automação executa a ação.</li>
+        <li>Dados são registrados.</li>
+        <li>Cliente recebe resposta.</li>
+        <li>Equipe recebe o resultado.</li>
+      </ol>
+    </section>
+
+    <section id="demonstracao" class="section demo" data-reveal>
+      <p class="section-kicker">Demonstração</p>
+      <h2>Veja uma automação funcionando.</h2>
+      <p class="section-lead">Não precisa imaginar. Teste. <span class="sim-tag">SIMULAÇÃO</span></p>
+
+      <div class="chip-row" role="tablist" aria-label="Tipos de demonstração">
+        <button type="button" class="chip is-active" role="tab" aria-selected="true" aria-controls="demo-chat" data-demo="atendimento">Atendimento</button>
+        <button type="button" class="chip" role="tab" aria-selected="false" aria-controls="demo-chat" data-demo="agendamento">Agendamento</button>
+        <button type="button" class="chip" role="tab" aria-selected="false" aria-controls="demo-chat" data-demo="lead">Captação de lead</button>
+        <button type="button" class="chip" role="tab" aria-selected="false" aria-controls="demo-chat" data-demo="vendas">Vendas</button>
+        <button type="button" class="chip" role="tab" aria-selected="false" aria-controls="demo-chat" data-demo="followup">Follow-up</button>
+        <button type="button" class="chip" role="tab" aria-selected="false" aria-controls="demo-chat" data-demo="suporte">Suporte</button>
+      </div>
+
+      <div class="demo-board">
+        <div class="demo-chat" id="demo-chat" role="tabpanel" aria-live="polite"></div>
+        <aside class="demo-side" id="demo-side" role="tabpanel"></aside>
+      </div>
+    </section>
+
+    <section id="simulador" class="section quiz" data-reveal>
+      <p class="section-kicker">Diagnóstico</p>
+      <h2>Descubra o que pode ser automatizado na sua empresa.</h2>
+      <p class="section-lead">Ferramenta local. Nada é enviado para fora desta página.</p>
+
+      <form id="quiz-form" class="quiz-form" novalidate>
+        <fieldset data-step="1" class="is-active">
+          <legend>1. O que mais consome tempo da sua equipe?</legend>
+          <div class="option-grid">
+            <label><input type="radio" name="tempo" value="Responder clientes" required> Responder clientes</label>
+            <label><input type="radio" name="tempo" value="Agendar horários"> Agendar horários</label>
+            <label><input type="radio" name="tempo" value="Organizar leads"> Organizar leads</label>
+            <label><input type="radio" name="tempo" value="Enviar mensagens"> Enviar mensagens</label>
+            <label><input type="radio" name="tempo" value="Atualizar planilhas"> Atualizar planilhas</label>
+            <label><input type="radio" name="tempo" value="Gerar relatórios"> Gerar relatórios</label>
+            <label><input type="radio" name="tempo" value="Outro"> Outro</label>
+          </div>
+        </fieldset>
+
+        <fieldset data-step="2">
+          <legend>2. Quantas pessoas realizam essa tarefa?</legend>
+          <div class="option-grid">
+            <label><input type="radio" name="pessoas" value="1" required> 1</label>
+            <label><input type="radio" name="pessoas" value="2–5"> 2–5</label>
+            <label><input type="radio" name="pessoas" value="6–10"> 6–10</label>
+            <label><input type="radio" name="pessoas" value="10+"> 10+</label>
+          </div>
+        </fieldset>
+
+        <fieldset data-step="3">
+          <legend>3. Com que frequência?</legend>
+          <div class="option-grid">
+            <label><input type="radio" name="freq" value="Várias vezes ao dia" required> Várias vezes ao dia</label>
+            <label><input type="radio" name="freq" value="Diariamente"> Diariamente</label>
+            <label><input type="radio" name="freq" value="Semanalmente"> Semanalmente</label>
+            <label><input type="radio" name="freq" value="Eventualmente"> Eventualmente</label>
+          </div>
+        </fieldset>
+
+        <div class="quiz-nav">
+          <button type="button" class="btn btn-ghost" id="quiz-prev" hidden>Voltar</button>
+          <button type="button" class="btn btn-primary" id="quiz-next">Continuar</button>
+        </div>
+      </form>
+
+      <div id="quiz-result" class="quiz-result" hidden>
+        <p class="sim-tag">ANÁLISE DEMONSTRATIVA</p>
+        <p id="quiz-copy"></p>
+        <div class="process-compare">
+          <div>
+            <h3>Processo atual</h3>
+            <ol>
+              <li>Cliente</li>
+              <li>Funcionário</li>
+              <li>Pesquisa informação</li>
+              <li>Responde</li>
+              <li>Registra</li>
+              <li>Atualiza sistema</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Processo automatizado</h3>
+            <ol class="accent-list">
+              <li>Cliente</li>
+              <li>IA</li>
+              <li>Automação</li>
+              <li>Sistema</li>
+              <li>Equipe</li>
+            </ol>
+          </div>
+        </div>
+        <a class="btn btn-primary" href="#contato" id="quiz-cta">Quero automatizar esse processo</a>
+        <button type="button" class="btn btn-ghost" id="quiz-reset">Fazer de novo</button>
+      </div>
+    </section>
+
+    <section id="segmentos" class="section segments" data-reveal>
+      <p class="section-kicker">Aplicação</p>
+      <h2>Como isso funcionaria no seu negócio?</h2>
+      <div class="chip-row" role="tablist" aria-label="Segmentos">
+        <button type="button" class="chip is-active" data-segment="clinica">Clínica</button>
+        <button type="button" class="chip" data-segment="barbearia">Barbearia</button>
+        <button type="button" class="chip" data-segment="imobiliaria">Imobiliária</button>
+        <button type="button" class="chip" data-segment="loja">Loja</button>
+        <button type="button" class="chip" data-segment="restaurante">Restaurante</button>
+        <button type="button" class="chip" data-segment="servicos">Empresa de serviços</button>
+      </div>
+      <div class="demo-board segment-board">
+        <div class="demo-chat" id="segment-chat" aria-live="polite"></div>
+        <aside class="demo-side" id="segment-side"></aside>
+      </div>
+    </section>
+
+    <section id="white-label" class="section white-label" data-reveal>
+      <p class="section-kicker">White-label</p>
+      <h2>A experiência pode ter a identidade da sua empresa.</h2>
+      <p class="section-lead">Cada solução pode ser personalizada de acordo com a identidade, processos e necessidades da empresa. Os painéis abaixo são fictícios.</p>
+
+      <div class="chip-row">
+        <button type="button" class="chip is-active" data-dash="clinica">Clínica Nova</button>
+        <button type="button" class="chip" data-dash="barber">Barber One</button>
+        <button type="button" class="chip" data-dash="imoveis">Prime Imóveis</button>
+      </div>
+
+      <div class="dash" id="dash-panel">
+        <header class="dash-head">
+          <div>
+            <p class="ai-kicker">PAINEL FICTÍCIO</p>
+            <h3 id="dash-title">Clínica Nova</h3>
+            <p>Assistente IA</p>
+          </div>
+          <span class="status-pill" data-online><i></i> Operando</span>
+        </header>
+        <div class="dash-grid">
+          <article>
+            <span>Conversas</span>
+            <strong id="dash-chats">24</strong>
+            <small>hoje</small>
+          </article>
+          <article>
+            <span>Leads</span>
+            <strong id="dash-leads">11</strong>
+            <small>qualificados</small>
+          </article>
+          <article>
+            <span>Agendamentos</span>
+            <strong id="dash-bookings">8</strong>
+            <small>confirmados</small>
+          </article>
+          <article>
+            <span>Automações</span>
+            <strong id="dash-autos">6</strong>
+            <small>ativas</small>
+          </article>
+        </div>
+        <div class="dash-history" id="dash-history"></div>
+      </div>
+    </section>
+
+    <section id="ia-seguranca" class="section ia-security" data-reveal>
+      <p class="section-kicker">IA + Segurança</p>
+      <h2>IA não substitui controles de segurança. Ela complementa.</h2>
+      <p class="section-lead">Nossa abordagem usa inteligência artificial para identificar padrões, detectar anomalias e acelerar respostas — sempre sobre uma base sólida de controles tradicionais.</p>
+
+      <div class="ia-flow">
+        <div class="ia-flow-step">
+          <div class="ia-flow-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Sistema Operando</h3>
+          <p>Usuários acessam, dados fluem, processos rodam.</p>
+        </div>
+        <div class="ia-flow-arrow">→</div>
+        <div class="ia-flow-step">
+          <div class="ia-flow-icon ia-highlight">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>IA Analisa</h3>
+          <p>Padrões de uso, comportamentos atípicos, possíveis anomalias.</p>
+        </div>
+        <div class="ia-flow-arrow">→</div>
+        <div class="ia-flow-step">
+          <div class="ia-flow-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 9l-3 3 3 3M14 9l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Automação Age</h3>
+          <p>Bloqueio temporário, notificação, escalonamento automático.</p>
+        </div>
+        <div class="ia-flow-arrow">→</div>
+        <div class="ia-flow-step">
+          <div class="ia-flow-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13.73 21a2 2 0 0 1-3.46 0" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Equipe Notificada</h3>
+          <p>Alertas claros com contexto para decisão humana.</p>
+        </div>
+        <div class="ia-flow-arrow">→</div>
+        <div class="ia-flow-step">
+          <div class="ia-flow-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Gestão Acompanha</h3>
+          <p>Dashboard com métricas, incidentes e tendências.</p>
+        </div>
+      </div>
+
+      <div class="ia-disclaimer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <p><strong>Importante:</strong> IA é uma camada adicional de proteção, não substitui autenticação robusta, autorização correta, criptografia, validação de entrada e auditoria.</p>
+      </div>
+    </section>
+
+    <section id="integracoes" class="section integrations" data-reveal>
+      <p class="section-kicker">Integrações</p>
+      <h2>Conectamos a IA ao que sua empresa já utiliza.</h2>
+      <div class="hub">
+        <div class="hub-core">IA</div>
+        <ul>
+          <li>WhatsApp</li>
+          <li>CRM</li>
+          <li>Google Calendar</li>
+          <li>E-mail</li>
+          <li>Banco de dados</li>
+          <li>APIs</li>
+          <li>Dashboard</li>
+          <li>n8n</li>
+        </ul>
+      </div>
+      <p class="legal-note">Integramos ferramentas e sistemas sempre que houver suporte técnico ou API disponível.</p>
+    </section>
+
+    <section id="tecnologia" class="section tech" data-reveal>
+      <p class="section-kicker">Arquitetura</p>
+      <h2>Segurança em todas as camadas.</h2>
+      <p class="section-lead">Não colocamos segurança apenas na tela de login. Ela atravessa toda a arquitetura.</p>
+
+      <div class="arch-flow">
+        <div class="arch-layer arch-user">
+          <span class="arch-label">Usuário</span>
+          <div class="arch-box">Interface</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer arch-auth">
+          <span class="arch-label">Autenticação</span>
+          <div class="arch-box">JWT / Tokens</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer arch-api">
+          <span class="arch-label">API</span>
+          <div class="arch-box">REST / GraphQL</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer arch-rules">
+          <span class="arch-label">Regras</span>
+          <div class="arch-box">Validação</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer arch-data">
+          <span class="arch-label">Dados</span>
+          <div class="arch-box">RLS / Criptografia</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer arch-monitor">
+          <span class="arch-label">Monitoramento</span>
+          <div class="arch-box">Logs / Alertas</div>
+        </div>
+      </div>
+
+      <div class="arch-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span>Cada camada implementa controles de segurança específicos, desde validação de entrada até criptografia em repouso.</span>
+      </div>
+    </section>
+
+    <section id="impacto" class="section impact" data-reveal>
+      <p class="section-kicker">O Risco</p>
+      <h2>Seu sistema pode estar funcionando. Isso não significa que ele esteja seguro.</h2>
+      <p class="section-lead">Mesmo que tudo pareça normal, existem falhas silenciosas que podem expor sua empresa.</p>
+
+      <div class="impact-grid">
+        <article class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>RLS Mal Configurado</h3>
+          <p>Dados podem ficar acessíveis além do necessário. Um usuário consegue ver informações de outros.</p>
+          <p class="impact-consequence"><strong>Consequência:</strong> Vazamento de dados sensíveis.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 22V12h6v10M12 2v10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Segredos Expostos</h3>
+          <p>Chaves de API e credenciais deixadas no código frontend ou em logs públicos.</p>
+          <p class="impact-consequence"><strong>Consequência:</strong> Acesso não autorizado aos seus sistemas.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 9v4M12 17h.01" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Autenticação Incompleta</h3>
+          <p>Estar logado não significa estar autorizado. Faltam verificações de permissão.</p>
+          <p class="impact-consequence"><strong>Consequência:</strong> Usuários acessam recursos que não deveriam.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Validação de Entrada</h3>
+          <p>Dados recebidos sem verificação podem executar ações não esperadas.</p>
+          <p class="impact-consequence"><strong>Consequência:</strong> Injeção de código, manipulação de dados.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v8m-4-4h8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Monitoramento Insuficiente</h3>
+          <p>Problemas podem permanecer invisíveis até causarem impacto real.</p>
+          <p class="impact-consequence"><strong>Consequência:</strong> Detecção tardia de incidentes.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4M7 20H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Permissões Excessivas</h3>
+          <p>Usuários com mais acesso do que precisam amplificam o risco.</p>
+          <p class="impact-consequence"><strong>Consequência:</strong> Dano maior em caso de comprometimento.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9V5a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Auditoria Inadequada</h3>
+          <p>Sem registro de ações, é impossível investigar ou rastrear responsabilidades.</p>
+          <p class="impact-consequence"><strong>Consequência:</strong> Impossibilidade de investigação forense.</p>
+        </article>
+      </div>
+
+      <div class="impact-summary">
+        <h3>A abordagem defensiva</h3>
+        <p>Identificamos esses riscos <strong>antes</strong> que se transformem em incidentes. Nossa solução integra segurança em todas as camadas: autenticação robusta, autorização correta, validação rigorosa, monitoramento contínuo e auditoria completa.</p>
+      </div>
+    </section>
+
+    <section id="seguranca" class="section security" data-reveal>
+      <p class="section-kicker">Segurança</p>
+      <h2>Construído pensando em segurança.</h2>
+      <ul class="check-grid">
+        <li>API keys protegidas</li>
+        <li>Variáveis de ambiente</li>
+        <li>Separação frontend/backend</li>
+        <li>Validação de entradas</li>
+        <li>Controle de acesso</li>
+        <li>Tratamento de erros</li>
+        <li>Não exposição de credenciais</li>
+      </ul>
+      <p class="legal-note">Segurança é um processo contínuo. Não afirmamos que qualquer sistema é 100% seguro.</p>
+    </section>
+
+    <section id="processo" class="section hiring" data-reveal>
+      <p class="section-kicker">Contratação</p>
+      <h2>Do diagnóstico à evolução.</h2>
+      <ol class="hiring-steps">
+        <li><span>01</span><h3>Diagnóstico</h3><p>Entendemos o processo.</p></li>
+        <li><span>02</span><h3>Planejamento</h3><p>Desenhamos a automação.</p></li>
+        <li><span>03</span><h3>Desenvolvimento</h3><p>Criamos a solução.</p></li>
+        <li><span>04</span><h3>Testes</h3><p>Validamos os fluxos.</p></li>
+        <li><span>05</span><h3>Implantação</h3><p>Colocamos em funcionamento.</p></li>
+        <li><span>06</span><h3>Evolução</h3><p>A solução pode crescer junto com a empresa.</p></li>
+      </ol>
+    </section>
+
+    <section id="contato" class="section contact" data-reveal>
+      <p class="section-kicker">Contato</p>
+      <h2>Vamos desenhar a automação da sua empresa.</h2>
+      <p class="section-lead">Conte o processo que mais consome tempo. Respondemos com uma leitura objetiva do que dá para automatizar.</p>
+
+      <div class="contact-grid">
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="form-row">
+            <label>Nome
+              <input type="text" name="name" maxlength="80" required autocomplete="name" placeholder="Seu nome">
+            </label>
+            <label>WhatsApp
+              <input type="tel" name="phone" maxlength="20" required autocomplete="tel" placeholder="(31) 9XXXX-XXXX">
+            </label>
+          </div>
+          <label>Empresa
+            <input type="text" name="company" maxlength="80" autocomplete="organization" placeholder="Nome da empresa">
+          </label>
+          <label>O que você quer automatizar?
+            <textarea name="message" rows="4" maxlength="600" required placeholder="Ex.: atendimento no WhatsApp, agendamento e follow-up de leads"></textarea>
+          </label>
+          <p class="form-error" id="form-error" hidden></p>
+          <button type="submit" class="btn btn-primary">Enviar pelo WhatsApp</button>
+          <p class="legal-note">O envio abre o WhatsApp com a sua mensagem. Nenhum dado fica armazenado nesta página.</p>
+        </form>
+
+        <aside class="contact-card">
+          <p>Atendimento comercial</p>
+          <a href="https://wa.me/5531973403545" target="_blank" rel="noopener noreferrer">(31) 97340-3545</a>
+          <p>Segunda a sexta, 9h–18h</p>
+          <a class="btn btn-ghost" href="https://wa.me/5531973403545?text=Olá%2C%20quero%20entender%20como%20a%20Lucas%20AI%20pode%20automatizar%20processos%20da%20minha%20empresa." target="_blank" rel="noopener noreferrer">Falar agora</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>LUCAS AI</strong>
+      <span>Automações inteligentes</span>
+    </div>
+    <nav aria-label="Rodapé">
+      <a href="#inicio">Início</a>
+      <a href="#demonstracao">Demonstração</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <p>© 2026 Lucas AI. Soluções de IA e automação para empresas.</p>
+  </footer>
+
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
