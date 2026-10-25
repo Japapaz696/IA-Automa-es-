@@ -65,6 +65,12 @@ npm run test:browser
 
 O teste de navegador inicia e encerra seu próprio servidor HTTP e usa `/IA-Automa-es-/`. Cobre 320, 390, 768 e 1440 px, menu, teclado, abas, questionário, contato (URL interceptada, sem envio), fluxo local, persistência, estados, exclusão, conteúdo hostil como texto e falhas de armazenamento. Gera capturas e relatório em `evidence/after/` (ignorado pelo Git).
 
+### Integração contínua
+
+`.github/workflows/ci.yml` executa em pull requests para `main`, inclusive Draft: Node.js 22, `npm ci`, `npm test`, `npx playwright install --with-deps chromium` e `npm run test:browser`, em Ubuntu. O servidor HTTP é iniciado pelo próprio teste. Capturas e relatórios são disponibilizados como artefato por 7 dias, quando gerados.
+
+Não usa secrets, APIs pagas, banco externo ou serviço de deploy. O workflow solicita apenas leitura do conteúdo do repositório. O uso do runner está sujeito às políticas e cotas do GitHub Actions.
+
 `tests/baseline.cjs` é uma ferramenta de captura/diagnóstico, sem asserts de aprovação; o baseline anterior às correções está registrado em `docs/validation.md`.
 
 ## Estrutura do fluxo

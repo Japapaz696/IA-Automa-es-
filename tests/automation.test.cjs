@@ -80,3 +80,20 @@ test('falhas de armazenamento não são silenciosas no domínio', () => {
   const storage={getItem(){throw Error('blocked');},setItem(){throw Error('quota');},removeItem(){throw Error('blocked');}};
   assert.throws(()=>A.load(storage));assert.throws(()=>A.save(storage,make()));assert.throws(()=>A.clear(storage));
 });
+test('recarga rejeita estado incompatível com a sequência de eventos', () => {
+  const requests = make();
+  requests[0].status = 'completed';
+  assert.throws(() => A.decode(JSON.stringify({version:1,requests})), /Histórico inválido/);
+  requests[0].status = 'queued';
+  requests[0].events[1].status = 'queued';
+  assert.throws(() => A.decode(JSON.stringify({version:1,requests})), /Histórico inválido/);
+});
+test('recarga preserva cada estado válido e seus indicadores', () => {
+  let requests = make();
+  for (const status of ['queued','active','completed']) {
+    if (status !== 'queued') requests = A.transition(requests,'1',status,at);
+    const restored = A.decode(JSON.stringify({version:1,requests}));
+    assert.equal(restored[0].status,status);
+    assert.equal(A.indicators(restored)[status],1);
+  }
+});

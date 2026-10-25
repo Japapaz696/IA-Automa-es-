@@ -26,7 +26,7 @@ Capturas: `evidence/before/{320,390,768,1440}.png` e `results.json`.
 
 ## Resultado automatizado após correções
 
-- `npm test`: **18/18 testes unitários aprovados**.
+- `npm test`: **20/20 testes unitários aprovados**, incluindo regressão para histórico com estado incompatível com seus eventos e recarga dos três estados válidos.
 - `npm run test:browser`: **4/4 larguras aprovadas**, mais **2/2 cenários de armazenamento** (inválido e bloqueado).
 - Playwright: sem overflow horizontal do documento, imagens carregadas, âncoras internas existentes, sem respostas HTTP >=400 e sem erros JS/console nas quatro larguras.
 - Fluxo: quatro categorias, envio por teclado, erro vazio, estados, cinco eventos após conclusão, recarga, exclusão/cancelamento, repetição, texto de 1.000 caracteres e HTML renderizado literalmente.

@@ -62,6 +62,9 @@
           !Array.isArray(r.events) || r.events.length < 3 || r.events.length > 5 || r.events.some(e =>
             !e || !Number.isFinite(Date.parse(e.at)) || typeof e.detail !== 'string' || e.detail.length > 300 ||
             !['received','classified','queued','active','completed'].includes(e.status))) throw new Error('Histórico inválido.');
+      const sequence = ['received','classified','queued','active','completed'];
+      const eventCount = { queued: 3, active: 4, completed: 5 }[r.status];
+      if (r.events.length !== eventCount || r.events.some((e, i) => e.status !== sequence[i])) throw new Error('Histórico inválido.');
       ids.add(r.id);
     }
     return data.requests;
