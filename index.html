@@ -81,7 +81,7 @@
             <a class="btn btn-primary" href="#simulador">Solicitar diagnóstico</a>
             <a class="btn btn-ghost" href="#demonstracao">Ver como funciona</a>
           </div>
-          <p class="hero-note">Demonstrações locais. Nenhum dado é enviado para sistemas reais.</p>
+          <p class="hero-note">Automação local por regras, sem IA generativa. As conversas ilustrativas não são integrações ativas. Somente o contato comercial abre o WhatsApp.</p>
         </div>
 
         <div class="hero-stage">
@@ -101,7 +101,7 @@
               </span>
             </header>
 
-            <div class="ai-chat" id="hero-chat" aria-live="polite">
+            <div class="ai-chat" id="hero-chat" tabindex="0" role="region" aria-label="Conversa ilustrativa, role para ler" aria-live="polite">
               <article class="bubble client is-hidden" data-hero-msg>
                 <span>Cliente</span>
                 <p>Olá, gostaria de agendar um horário para amanhã.</p>
@@ -311,48 +311,57 @@
     </section>
 
     <section id="white-label" class="section white-label" data-reveal>
-      <p class="section-kicker">White-label</p>
-      <h2>A experiência pode ter a identidade da sua empresa.</h2>
-      <p class="section-lead">Cada solução pode ser personalizada de acordo com a identidade, processos e necessidades da empresa. Os painéis abaixo são fictícios.</p>
-
-      <div class="chip-row">
-        <button type="button" class="chip is-active" data-dash="clinica">Clínica Nova</button>
-        <button type="button" class="chip" data-dash="barber">Barber One</button>
-        <button type="button" class="chip" data-dash="imoveis">Prime Imóveis</button>
-      </div>
-
+      <p class="section-kicker">Laboratório local</p>
+      <h2>Da mensagem à fila de atendimento.</h2>
+      <p class="section-lead">Digite uma mensagem fictícia. Regras determinísticas classificam e encaminham a solicitação apenas para filas internas desta demonstração. Sem IA generativa, reserva de horário ou envio a WhatsApp, e-mail ou CRM.</p>
+      <form id="automation-form" class="contact-form" novalidate>
+        <label for="automation-message">Mensagem de atendimento</label>
+        <textarea id="automation-message" name="request" rows="3" maxlength="1000" aria-describedby="automation-help automation-feedback" required placeholder="Ex.: Quero agendar uma consulta…"></textarea>
+        <p id="automation-help" class="legal-note">De 5 a 1.000 caracteres. Em mensagens com mais de uma intenção: suporte tem prioridade, depois agendamento e vendas. Sem correspondência, encaminhamos para atendimento geral.</p>
+        <div class="chip-row" role="group" aria-label="Preencher exemplo sem enviar">
+          <button type="button" class="chip" data-example="Quero agendar uma consulta amanhã.">Exemplo: agendamento</button>
+          <button type="button" class="chip" data-example="Gostaria de um orçamento do produto.">Exemplo: vendas</button>
+          <button type="button" class="chip" data-example="Não consigo acessar meu painel.">Exemplo: suporte</button>
+          <button type="button" class="chip" data-example="Olá, gostaria de conversar com a equipe.">Exemplo: geral</button>
+        </div>
+        <button type="submit" class="btn btn-primary">Processar mensagem localmente</button>
+        <p id="automation-feedback" role="status" aria-live="polite"></p>
+      </form>
+      <p id="storage-notice" class="legal-note" role="status">Histórico salvo apenas neste navegador. Use mensagens fictícias, sem dados pessoais.</p>
       <div class="dash" id="dash-panel">
         <header class="dash-head">
           <div>
-            <p class="ai-kicker">PAINEL FICTÍCIO</p>
-            <h3 id="dash-title">Clínica Nova</h3>
-            <p>Assistente IA</p>
+            <p class="ai-kicker">DADOS LOCAIS DEMONSTRATIVOS</p>
+            <h3 id="dashboard-heading" tabindex="-1">Solicitações deste navegador</h3>
+            <p>Indicadores calculados a partir do histórico registrado.</p>
           </div>
-          <span class="status-pill" data-online><i></i> Operando</span>
         </header>
         <div class="dash-grid">
           <article>
-            <span>Conversas</span>
-            <strong id="dash-chats">24</strong>
-            <small>hoje</small>
+            <span>Total de solicitações</span>
+            <strong id="count-total">0</strong>
           </article>
           <article>
-            <span>Leads</span>
-            <strong id="dash-leads">11</strong>
-            <small>qualificados</small>
+            <span>Na fila</span>
+            <strong id="count-queued">0</strong>
           </article>
           <article>
-            <span>Agendamentos</span>
-            <strong id="dash-bookings">8</strong>
-            <small>confirmados</small>
+            <span>Em atendimento</span>
+            <strong id="count-active">0</strong>
           </article>
           <article>
-            <span>Automações</span>
-            <strong id="dash-autos">6</strong>
-            <small>ativas</small>
+            <span>Concluídas</span>
+            <strong id="count-completed">0</strong>
           </article>
         </div>
-        <div class="dash-history" id="dash-history"></div>
+        <p id="queue-counts" class="queue-counts"></p>
+        <div id="request-list" class="request-list" aria-label="Solicitações registradas"></div>
+      </div>
+      <button type="button" class="btn btn-ghost" id="clear-requests">Limpar dados demonstrativos</button>
+      <div id="clear-confirmation" hidden>
+        <p>Apagar todas as solicitações e eventos deste navegador? Esta ação não pode ser desfeita.</p>
+        <button type="button" class="btn btn-ghost" id="cancel-clear">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="confirm-clear">Confirmar exclusão local</button>
       </div>
     </section>
 
@@ -596,9 +605,9 @@
           <label>O que você quer automatizar?
             <textarea name="message" rows="4" maxlength="600" required placeholder="Ex.: atendimento no WhatsApp, agendamento e follow-up de leads"></textarea>
           </label>
-          <p class="form-error" id="form-error" hidden></p>
+          <p class="form-error" id="form-error" role="status" hidden></p>
           <button type="submit" class="btn btn-primary">Enviar pelo WhatsApp</button>
-          <p class="legal-note">O envio abre o WhatsApp com a sua mensagem. Nenhum dado fica armazenado nesta página.</p>
+          <p class="legal-note">Contato comercial separado da demonstração: abre o WhatsApp com a sua mensagem. Este formulário não salva seus dados no histórico local.</p>
         </form>
 
         <aside class="contact-card">
@@ -626,5 +635,7 @@
   </footer>
 
   <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/automation.js" defer></script>
+  <script src="assets/js/automation-ui.js" defer></script>
 </body>
 </html>

@@ -5,14 +5,26 @@
 
   /* Menu mobile */
   const btnNav = dQ('.nav-toggle'), nav = dQ('.site-nav');
-  if(btnNav && nav){ btnNav.addEventListener('click',()=>{ const o = btnNav.getAttribute('aria-expanded')==='true'; btnNav.setAttribute('aria-expanded',String(!o)); nav.classList.toggle('open'); }); dQA('.site-nav a').forEach(a=>a.addEventListener('click',()=>{ btnNav.setAttribute('aria-expanded','false'); nav.classList.remove('open'); })); }
+  if(btnNav && nav){
+    function closeMenu(){ btnNav.setAttribute('aria-expanded','false'); nav.classList.remove('open'); }
+    btnNav.addEventListener('click',()=>{ const open=btnNav.getAttribute('aria-expanded')!=='true'; btnNav.setAttribute('aria-expanded',String(open)); nav.classList.toggle('open',open); });
+    dQA('.site-nav a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape' && nav.classList.contains('open')){closeMenu();btnNav.focus();} });
+    document.addEventListener('click',e=>{if(!nav.contains(e.target)&&!btnNav.contains(e.target))closeMenu();});
+    document.addEventListener('focusin',e=>{if(!nav.contains(e.target)&&e.target!==btnNav)closeMenu();});
+    window.matchMedia('(max-width:900px)').addEventListener('change',closeMenu);
+  }
 
   /* Hero chat animation */
   (function heroChat(){
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const timers = [];
+    function revealAll(){ timers.forEach(clearTimeout); dQA('[data-hero-msg]').forEach(m=>{m.classList.remove('is-hidden');m.classList.add('is-visible');}); }
+    if(motion.matches){revealAll();return;}
     const msgs = dQA('[data-hero-msg]');
-    msgs.forEach((m,i)=>setTimeout(()=>{ m.classList.remove('is-hidden'); m.classList.add('is-visible'); }, 700 + i*900));
+    msgs.forEach((m,i)=>timers.push(setTimeout(()=>{ m.classList.remove('is-hidden'); m.classList.add('is-visible'); }, 700 + i*900)));
     const checks = dQA('[data-hero-check]');
-    checks.forEach((c,i)=>setTimeout(()=>{ c.style.opacity='1'; c.style.transform='translateY(0)'; }, 4000 + i*350));
+    motion.addEventListener('change',()=>{if(motion.matches)revealAll();});
   })();
 
   /* Demo tabs */
@@ -51,19 +63,33 @@
   chipsSeg.forEach(ch=>{ ch.addEventListener('click',()=>{ chipsSeg.forEach(c=>{ c.classList.remove('is-active'); c.setAttribute('aria-selected','false'); }); ch.classList.add('is-active'); ch.setAttribute('aria-selected','true'); const s = segmentData[ch.dataset.segment]; if(s && chatSeg && sideSeg){ chatSeg.innerHTML = s.chat; sideSeg.innerHTML = s.side; } }); });
   if(chipsSeg[0]){ const s = segmentData[chipsSeg[0].dataset.segment]; if(s && chatSeg && sideSeg){ chatSeg.innerHTML = s.chat; sideSeg.innerHTML = s.side; } }
 
-  /* White-label dashboard */
-  const dashData = {
-    clinica: { title:'Clínica Nova', chats:24, leads:11, bookings:8, autos:6, hist:'Cliente marcou avaliação às 10h · Lead qualificado · Automação de lembrete ativada' },
-    barber: { title:'Barber One', chats:31, leads:14, bookings:12, autos:4, hist:'Corte reservado às 15h · Confirmação enviada · Follow-up preparado' },
-    imoveis: { title:'Prime Imóveis', chats:18, leads:9, bookings:3, autos:7, hist:'Preferência identificada · Correção notificado · Oferta enviada' },
-  };
-  dQA('[data-dash]').forEach(ch=>{ ch.addEventListener('click',()=>{ dQA('[data-dash]').forEach(c=>{ c.classList.remove('is-active'); }); ch.classList.add('is-active'); const d = dashData[ch.dataset.dash]; if(!d) return; dQ('#dash-title').textContent = d.title; dQ('#dash-chats').textContent = d.chats; dQ('#dash-leads').textContent = d.leads; dQ('#dash-bookings').textContent = d.bookings; dQ('#dash-autos').textContent = d.autos; dQ('#dash-history').innerHTML = '<p>'+d.hist+'</p>'; }); });
+  /* Accessible keyboard navigation for both sets of demonstration tabs. */
+  function setupTabs(selector, panelId){
+    const tabs=[...dQA(selector)], panel=dQ('#'+panelId);
+    if(!tabs.length||!panel)return;
+    panel.setAttribute('role','tabpanel');
+    tabs.forEach((tab,i)=>{
+      tab.id=panelId+'-tab-'+i;
+      tab.setAttribute('role','tab');tab.setAttribute('aria-controls',panelId);
+      function sync(){ tabs.forEach(t=>{const on=t===tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;});panel.setAttribute('aria-labelledby',tab.id); }
+      tab.addEventListener('click',sync);
+      tab.addEventListener('keydown',e=>{
+        const keys={ArrowRight:(i+1)%tabs.length,ArrowLeft:(i+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1};
+        if(Object.hasOwn(keys,e.key)){e.preventDefault();tabs[keys[e.key]].focus();tabs[keys[e.key]].click();}
+      });
+      tab.setAttribute('aria-selected',String(i===0));tab.tabIndex=i===0?0:-1;
+    });
+    panel.setAttribute('aria-labelledby',tabs[0].id);
+  }
+  setupTabs('[data-demo]','demo-chat');setupTabs('[data-segment]','segment-chat');
+  dQ('#demo-side')?.setAttribute('role','region');
+  dQ('#demo-side')?.setAttribute('aria-label','Resultado ilustrativo');
 
   /* Quiz simulator */
   const quizForm = dQ('#quiz-form'), quizResult = dQ('#quiz-result');
   let step = 1;
   const btnNext = dQ('#quiz-next'), btnPrev = dQ('#quiz-prev'), btnReset = dQ('#quiz-reset');
-  function showStep(n){ dQA('#quiz-form fieldset').forEach(f=>f.classList.remove('is-active')); const s = dQ('#quiz-form fieldset[data-step="'+n+'"]'); if(s) s.classList.add('is-active'); btnPrev.hidden = n<=1; btnNext.textContent = n>=3 ? 'Ver análise' : 'Continuar'; step=n; }
+  function showStep(n){ dQA('#quiz-form fieldset').forEach(f=>f.classList.remove('is-active')); const s = dQ('#quiz-form fieldset[data-step="'+n+'"]'); if(s){s.classList.add('is-active');s.tabIndex=-1;s.focus();} btnPrev.hidden = n<=1; btnNext.textContent = n>=3 ? 'Ver análise' : 'Continuar'; step=n; }
   function validateStep(n){ const fs = dQ('#quiz-form fieldset[data-step="'+n+'"]'); if(!fs) return false; const radios = fs.querySelectorAll('input[type="radio"]'); if(radios.length===0) return true; return Array.from(radios).some(r=>r.checked); }
   if(btnNext && quizForm){ btnNext.addEventListener('click',()=>{ if(step<3){ if(!validateStep(step)){ alert('Por favor, selecione uma opção antes de continuar.'); return; } showStep(step+1); } else { if(!validateStep(step)){ alert('Por favor, selecione uma opção antes de ver a análise.'); return; } const f = quizForm; const tempo = dQ('input[name="tempo"]:checked'); const pessoas = dQ('input[name="pessoas"]:checked'); const freq = dQ('input[name="freq"]:checked'); if(tempo && pessoas && freq){ quizForm.hidden=true; quizResult.hidden=false; dQ('#quiz-copy').innerHTML = '<strong>Pelo processo informado, existe potencial para automatizar boa parte dessa operação.</strong><br><br>Processo atual: Cliente → Funcionário → Pesquisa → Responde → Registra → Atualiza. <br>Processo automatizado: Cliente → IA → Automação → Sistema → Equipe.'; } else { alert('Responda todas as perguntas.'); } } }); }
   if(btnPrev && quizForm){ btnPrev.addEventListener('click',()=>{ if(step>1) showStep(step-1); }); }
@@ -71,9 +97,17 @@
 
   /* Contact form (no server, opens WA) */
   const cf = dQ('#contact-form');
-  if(cf){ cf.addEventListener('submit',e=>{ e.preventDefault(); const n = cf.name.value.trim(), p = cf.phone.value.trim(), c = cf.company.value.trim(), m = cf.message.value.trim(); if(!n||!p||!m){ dQ('#form-error').textContent='Preencha pelo menos nome, WhatsApp e mensagem.'; dQ('#form-error').hidden=false; return; } dQ('#form-error').hidden=true; const text = encodeURIComponent(`Olá, sou ${n}${c?` da ${c}`:''}. Quero entender como a Lucas AI pode automatizar: ${m}`); window.open(`https://wa.me/5531973403545?text=${text}`,'_blank'); cf.reset(); }); }
+  if(cf){ cf.addEventListener('submit',e=>{
+    e.preventDefault();
+    const fields=['name','phone','company','message'];
+    const [n,p,c,m]=fields.map(key=>cf.elements.namedItem(key).value.trim());
+    const invalid=!n?'name':!/^\+?[\d\s().-]{10,20}$/.test(p)||p.replace(/\D/g,'').length<10?'phone':!m?'message':null;
+    if(invalid){dQ('#form-error').textContent='Informe nome, telefone válido (ao menos 10 dígitos) e mensagem.';dQ('#form-error').hidden=false;cf.elements.namedItem(invalid).focus();return;}
+    dQ('#form-error').hidden=true;
+    const text=encodeURIComponent(`Olá, sou ${n}${c?` da ${c}`:''}. Meu WhatsApp: ${p}. Quero entender como a Lucas AI pode automatizar: ${m}`);
+    window.open(`https://wa.me/5531973403545?text=${text}`,'_blank','noopener,noreferrer');
+  }); }
 
   /* Reveal on scroll */
-  const observer = new IntersectionObserver(entries=>{ entries.forEach(en=>{ if(en.isIntersecting){ en.target.style.opacity='1'; en.target.style.transform='translateY(0)'; observer.unobserve(en.target); } }); }, {threshold:.1});
-  dQA('[data-reveal]').forEach(el=>{ el.style.opacity='0'; el.style.transform='translateY(18px)'; el.style.transition='opacity .7s ease, transform .7s ease'; observer.observe(el); });
+  // Content stays visible: no opacity-zero sections that can hide focused controls.
 })();

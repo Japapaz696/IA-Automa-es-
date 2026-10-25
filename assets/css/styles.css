@@ -1,5 +1,6 @@
 /*! Lucas AI — Premium Corporate Design System */
 :root{
+  color-scheme:dark;
   --bg:#0a0a0b; --surface:#111113; --surface-2:#17171a; --border:#2a2a30;
   --text:#f0f0f2; --text-dim:#b8b8be; --text-muted:#888892;
   --accent:#00c8d0; --accent-soft:#dff6f7; --accent-deep:#009199;
@@ -14,6 +15,7 @@
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 main{scroll-margin-top:80px;outline:none}
 main:focus{outline:none}
+[id],fieldset{scroll-margin-top:100px}
 body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 a{color:var(--accent);text-decoration:none}
@@ -26,15 +28,16 @@ a{color:var(--accent);text-decoration:none}
 .brand{display:flex;align-items:center;gap:12px;color:var(--text);font-family:var(--font-heading);font-weight:700;font-size:1.15rem;text-decoration:none}
 .brand-mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#00c8d0,#009199);box-shadow:0 0 0 2px rgba(0,200,208,.25)}
 .brand-text small{display:block;font-family:var(--font-body);font-weight:400;font-size:.72rem;color:var(--text-muted);letter-spacing:.04em}
-.nav-toggle{display:none;background:none;border:none;width:36px;height:36px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-toggle{display:none;background:none;border:none;width:44px;height:44px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;position:relative;z-index:2}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.25s}
 .site-nav{display:flex;align-items:center;gap:28px;font-family:var(--font-heading);font-size:.92rem;font-weight:500}
 .site-nav a{color:var(--text-dim);transition:color .2s}
 .site-nav a:hover,.site-nav a[aria-current="page"]{color:var(--text)}
 .nav-cta{background:var(--accent);color:#0a0a0b;padding:8px 16px;border-radius:100px;font-weight:700;font-size:.82rem;transition:filter .2s}
 .nav-cta:hover{filter:brightness(1.15)}
-@media(max-width:900px){.nav-toggle{display:flex}.site-nav{position:fixed;inset:0 0 0 auto;max-width:320px;background:rgba(10,10,11,.98);backdrop-filter:blur(16px);flex-direction:column;padding:100px 32px 40px;gap:24px;transform:translateX(100%);transition:transform .3s ease;box-shadow:-20px 0 60px rgba(0,0,0,.5)}
-.site-nav.open{transform:translateX(0)}
+.site-nav .nav-cta,.site-nav .nav-cta:hover{color:var(--bg)}
+@media(max-width:900px){.nav-toggle{display:flex}.site-nav{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 80px);overflow-y:auto;background:rgba(10,10,11,.98);flex-direction:column;padding:24px;gap:24px;border-bottom:1px solid var(--border)}
+.site-nav.open{display:flex}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -129,7 +132,8 @@ a{color:var(--accent);text-decoration:none}
 .chip.is-active{background:var(--accent);color:#0a0a0b;border-color:var(--accent);box-shadow:0 0 0 2px rgba(0,200,208,.25)}
 
 /* Quiz */
-.quiz-form fieldset{border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;background:var(--surface-2);margin-bottom:14px}
+.quiz-form fieldset:not(.is-active){display:none}
+.quiz-form fieldset{border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;background:var(--surface-2);margin-bottom:14px;min-width:0}
 .quiz-form legend{font-family:var(--font-heading);font-weight:700;font-size:1rem;margin-bottom:10px}
 .option-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
 .option-grid label{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;font-size:.9rem;color:var(--text-dim);transition:.15s;display:flex;align-items:center;gap:8px}
@@ -231,4 +235,18 @@ a{color:var(--accent);text-decoration:none}
 /* Responsive */
 @media(max-width:1020px){.hero-grid{grid-template-columns:1fr}.hero-stage{margin-top:48px}.ai-panel{position:relative;bottom:auto;left:auto;width:100%;max-width:360px;margin:24px auto 0}}
 @media(max-width:900px){.demo-board,.contact-grid{grid-template-columns:1fr}.flow-rail li{min-width:120px}.problem-grid{grid-template-columns:1fr}.impact-grid{grid-template-columns:1fr}.arch-layer{flex-direction:column;text-align:center}.arch-label{text-align:center;min-width:auto}.arch-flow{padding:20px}}
-@media(max-width:600px){.site-nav{max-width:280px;padding:80px 24px 32px}.section{padding:5vh 4vw}.hero{padding:5vh 4vw}.benefits{padding:4vw}.btn{padding:12px 18px;font-size:.88rem}.nav-cta{padding:8px 12px;font-size:.75rem}.section h2{font-size:1.5rem}.impact-grid{grid-template-columns:1fr}.dash-grid{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}}
+@media(max-width:600px){.section{padding:5vh 4vw}.hero{padding:5vh 4vw}.benefits{padding:4vw}.btn{padding:12px 18px;font-size:.88rem;white-space:normal;text-align:left}.nav-cta{padding:8px 12px;font-size:.75rem}.section h2{font-size:1.5rem}.impact-grid{grid-template-columns:1fr}.dash-grid{grid-template-columns:1fr 1fr}.form-row,.process-compare{grid-template-columns:1fr}}
+
+[hidden]{display:none!important}
+.chip{transition:border-color .15s,background-color .15s;min-height:44px}
+.status-pill i{animation:none}
+.request-list{padding:18px;display:grid;gap:14px;max-height:650px;overflow-y:auto}
+.request-card{min-width:0;padding:16px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);overflow-wrap:anywhere}
+.request-card p,.request-card time,.request-card details{display:block;margin:10px 0;color:var(--text-dim)}
+.request-card ol{padding-left:20px}
+.request-card summary{cursor:pointer;min-height:44px;padding:10px 0}
+.queue-counts{padding:0 18px;overflow-wrap:anywhere}
+#automation-form,#dash-panel,#clear-requests,#clear-confirmation{margin-top:20px}
+#automation-feedback{min-height:1.6em;margin-top:12px}
+.dash-grid strong{font-variant-numeric:tabular-nums}
+.hero-grid>*,.demo-board>*,.contact-grid>*{min-width:0}
