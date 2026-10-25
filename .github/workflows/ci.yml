@@ -1,0 +1,42 @@
+name: Quality
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Unit, Chromium and accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Unit tests
+        run: npm test
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Browser and axe tests
+        run: npm run test:browser
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: browser-evidence
+          path: evidence/after/
+          if-no-files-found: warn
+          retention-days: 7
