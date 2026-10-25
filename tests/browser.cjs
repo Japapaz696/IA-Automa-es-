@@ -64,7 +64,9 @@ const A = require('../assets/js/automation.js');
       assert.equal(await page.locator('#count-completed').textContent(),'1');
       assert.equal(await page.evaluate(()=>window.openedURL),undefined);
       assert.deepEqual(mutations,[]);
-      await page.locator('#dash-panel').screenshot({path:`evidence/after/panel-${width}.png`,style:'.site-header{visibility:hidden!important}'});
+      const panelCaptureStyle=await page.addStyleTag({content:'.site-header{display:none!important}'});
+      await page.locator('#dash-panel').screenshot({path:`evidence/after/panel-${width}.png`});
+      await panelCaptureStyle.evaluate(el=>el.remove());
 
       // User text is rendered literally, never as executable markup.
       await page.locator('#automation-message').fill('<img src=x onerror="window.injected=1"> suporte');
@@ -104,7 +106,9 @@ const A = require('../assets/js/automation.js');
       const axe=await page.evaluate(async()=>{const r=await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}});return r.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)}));});
       await page.locator('#white-label').scrollIntoViewIfNeeded();
       await page.screenshot({path:`evidence/after/dashboard-${width}.png`});
-      await page.locator('#dash-panel').screenshot({path:`evidence/after/stress-panel-${width}.png`,style:'.site-header{visibility:hidden!important}'});
+      const stressCaptureStyle=await page.addStyleTag({content:'.site-header{display:none!important}'});
+      await page.locator('#dash-panel').screenshot({path:`evidence/after/stress-panel-${width}.png`});
+      await stressCaptureStyle.evaluate(el=>el.remove());
       await page.screenshot({path:`evidence/after/full-${width}.png`,fullPage:true});
       await page.locator('#clear-requests').click();await page.locator('#cancel-clear').click();
       assert.equal(await page.locator('#count-total').textContent(),'6');

@@ -34,6 +34,8 @@ Capturas: `evidence/before/{320,390,768,1440}.png` e `results.json`.
 - axe-core: **0 violações detectadas** nas regras WCAG 2 A/AA e WCAG 2.1 AA avaliadas, nas quatro larguras. Isso não constitui certificação completa de acessibilidade.
 - Lighthouse não executado. Nenhuma nota de performance foi atribuída.
 
-Capturas posteriores: `evidence/after/panel-*.png` (dashboard com quatro solicitações), `dashboard-*.png`, `full-*.png`, `stress-panel-*.png` e relatório `results.json`. Nas capturas isoladas de painel, somente o header sticky é ocultado pela opção de screenshot, para não sobrepor o recorte; as capturas de viewport/página mantêm o header.
+Capturas posteriores: `evidence/after/panel-*.png` (dashboard com quatro solicitações), `dashboard-*.png`, `full-*.png`, `stress-panel-*.png` e relatório `results.json`. Nas capturas isoladas de painel, somente o header sticky é temporariamente ocultado pelo teste, para não sobrepor o recorte; as capturas de viewport/página mantêm o header.
+
+Reprodução em clone local limpo: `npm ci`, `npm test` e `npm run test:browser` aprovados, com árvore Git limpa antes e após a execução.
 
 As evidências binárias ficam locais, fora do Git. Scripts e lockfile permitem reproduzir os testes. Nenhum deploy ou serviço externo de automação foi ativado.
